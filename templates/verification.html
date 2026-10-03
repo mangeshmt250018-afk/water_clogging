@@ -1,0 +1,38 @@
+{% include "header.html" %}
+<section class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+    style='background-image: url("{{ img }}")'>
+
+    <div class="absolute inset-0 bg-white/50"></div>
+
+    <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20">
+
+        <div class="w-full max-w-2xl
+                   bg-white/80
+                   backdrop-blur-xl
+                   rounded-3xl
+                   shadow-2xl
+                   p-10
+                   border border-white/30">
+            {% with messages= get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p style="color: red;">{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <h3 class="text-5xl md:text-6xl font-bold">
+                Verify the email.
+            </h3>
+
+            <p class="text-xl mt-4 text-black-600">
+                An email has been send to your email {{email}} <br>Follow the instruction in the email to Verify your
+                email
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+{% include "footer.html" %}

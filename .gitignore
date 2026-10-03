@@ -1,2 +1,94 @@
+# ==============================
+# Environment / Secrets
+# ==============================
 .env
-data.db
+.env.*
+!.env.example
+
+# ==============================
+# Python
+# ==============================
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# ==============================
+# Virtual Environments
+# ==============================
+.venv/
+venv/
+env/
+ENV/
+water_clogging.venv/
+
+# ==============================
+# Testing / Coverage
+# ==============================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# ==============================
+# Type Checking / Linters
+# ==============================
+.mypy_cache/
+.pyright/
+.ruff_cache/
+
+# ==============================
+# Flask / Local Runtime
+# ==============================
+instance/
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+
+# ==============================
+# Logs
+# ==============================
+*.log
+logs/
+
+# ==============================
+# IDE / Editors
+# ==============================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==============================
+# OS files
+# ==============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+# Build / Packaging
+# ==============================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ==============================
+# Local generated files
+# ==============================
+uploads/
+media/
+tmp/
+temp/
+
+# ==============================
+# Node
+# ==============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*

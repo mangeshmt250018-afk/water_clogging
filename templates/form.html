@@ -1,0 +1,93 @@
+{% from "bootstrap5/form.html" import render_form %}
+{% include "header.html" %}
+
+<section class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+  style='background-image: url("{{ img }}")'>
+
+  <div class="absolute inset-0 bg-white/50"></div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20">
+
+    {% if current_page == "report"%}
+    <script src="{{ url_for('static', filename='js/report.js') }}"></script>
+
+    <div class="text-center text-white mb-10">
+      <h1 class="text-5xl md:text-6xl font-bold">
+        Report Water Logging
+      </h1>
+      <p class="text-xl mt-4 text-white">
+        Help your community by reporting flooded roads.
+      </p>
+    </div>
+    {% elif current_page =="login" %}
+    <div class="text-center text-gray-600 mb-10">
+      <h1 class="text-5xl md:text-6xl font-bold">
+        Log In
+      </h1>
+
+      <p class="text-xl mt-4 text-gray-500">
+        Welcome Back to the water reporting community.
+      </p>
+    </div>
+    {% elif current_page =="signup"%}
+    <div class="text-center text-white mb-10">
+      <h1 class="text-5xl md:text-6xl font-bold">
+        signup
+      </h1>
+
+      <p class="text-xl mt-4 text-white">
+        Join the community by singing up.
+      </p>
+    </div>
+    {% endif %}
+
+    <div class="w-full max-w-2xl
+                   bg-white/80
+                   backdrop-blur-xl
+                   rounded-3xl
+                   shadow-2xl
+                   p-10
+                   border border-white/30">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <p style="color: {% if category == 'error' or 'invalid' in message.lower() or 'failed' in message.lower() or 'error' in message.lower() or 'incorrect' in message.lower() or 'missing' in message.lower() or 'wait' in message.lower() or 'deny' in message.lower() or 'limit' in message.lower() or 'large' in message.lower() %}#dc2626{% else %}#16a34a{% endif %};" class="font-semibold text-sm mb-3">
+        {{ message }}
+      </p>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      {% if current_page == "report" %}
+      <div id="location-status-container" class="mb-5 p-4 rounded-2xl bg-blue-50 border border-blue-200 text-blue-900 hidden transition-all">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span id="location-icon" class="text-2xl flex-shrink-0">📍</span>
+            <div>
+              <p id="location-status-title" class="text-sm font-bold leading-tight">Detecting Location...</p>
+              <p id="location-status-text" class="text-xs mt-0.5 opacity-90">Please allow browser location access</p>
+            </div>
+          </div>
+          <button type="button" id="retry-location-btn" class="hidden px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl shadow-sm transition-colors cursor-pointer whitespace-nowrap">
+            Retry Location
+          </button>
+        </div>
+        <p id="location-help-text" class="text-xs mt-2 pt-2 border-t border-red-200/50 hidden"></p>
+      </div>
+      {% endif %}
+
+      {{ render_form(form) }}
+      <br>
+      {% if current_page == "signup"%}
+      <p>Already have account?<a href="{{url_for('login')}}"> login</a>.</p>
+      {% elif current_page == "login"%}
+      <p>Don't have account?<a href="{{url_for('register')}}"> signup</a>.</p>
+      <p class="mt-2"><a href="{{url_for('resend_verification')}}">Need a new verification link?</a></p>
+      {% endif %}
+    </div>
+
+  </div>
+
+</section>
+
+{% include "footer.html" %}
