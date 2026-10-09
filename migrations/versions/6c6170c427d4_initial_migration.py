@@ -29,7 +29,7 @@ def upgrade():
             sa.Column('name', sa.String(length=20), nullable=False),
             sa.Column('email', sa.String(length=100), nullable=False, unique=True),
             sa.Column('password', sa.String(), nullable=False),
-            sa.Column('is_verified', sa.Boolean(), nullable=False, server_default=sa.text('0')),
+            sa.Column('is_verified', sa.Boolean(), server_default=sa.false(), nullable=False),
             sa.Column('last_verification_sent', sa.DateTime(), nullable=True)
         )
     else:
