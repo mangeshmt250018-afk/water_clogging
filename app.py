@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request, abort
+from flask import Flask, render_template, redirect, url_for, flash, request, abort ,Response
 from flask_bootstrap import Bootstrap5
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, joinedload, selectinload
 from sqlalchemy import Integer, String, Boolean, Float, DateTime
@@ -791,6 +791,16 @@ def resend_verification():
         return redirect(url_for('login'))
 
     return render_template('resend_verification.html')
+@app.route("/sitemap.xml")
+def sitemap():
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <url>
+            <loc>https://water-clogging.vercel.app/</loc>
+        </url>
+    </urlset>
+    """
+    return Response(xml, mimetype="application/xml")
 
 @app.route('/logout', methods=['POST'])
 @login_required
